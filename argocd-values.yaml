@@ -1,0 +1,82 @@
+# ============================================================
+# LAB DEVOPS - ARGO CD
+# Kubernetes KIND + Traefik | Ambiente local
+# ============================================================
+# Instalar com o chart oficial argo/argo-cd.
+# O Traefik existente recebera HTTP e encaminhara ao Service.
+# NAO recomendado para acesso em redes nao confiaveis.
+
+global:
+  domain: argocd.test
+
+configs:
+  params:
+    # Permite HTTP entre Traefik e Argo CD Server.
+    server.insecure: true
+  cm:
+    # URL utilizada pelo Argo CD para links e redirecionamentos.
+    url: http://argocd.test
+
+controller:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+
+repoServer:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+server:
+  replicas: 1
+  service:
+    type: ClusterIP
+  ingress:
+    # Usaremos IngressRoute do Traefik em manifesto separado.
+    enabled: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+redis:
+  enabled: true
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 256Mi
+
+applicationSet:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 256Mi
+
+notifications:
+  enabled: true
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 256Mi
+
+dex:
+  # Sem login externo (OIDC) neste laboratorio.
+  enabled: false
+ 
