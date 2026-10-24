@@ -1,4 +1,3 @@
-{{ if .Values.argocd.randomLogger.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -11,11 +10,10 @@ spec:
   project: default
   source:
     path: random-logger/helm
-    repoURL: https://github.com/bernardolsp/descomplicando-gitops-no-kubernetes-argocd.git
+    repoURL: https://github.com/leonelzacheo/lab-devops-argocd.git
     targetRevision: feat/day2
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true 
-{{ end }}
