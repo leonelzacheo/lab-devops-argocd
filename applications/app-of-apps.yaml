@@ -12,10 +12,10 @@ spec:
     path: app-of-apps
     helm:
       parameters:
-      - name: "argocd.giropops-senhas.enabled
-        value: true
+      - name: "argocd.giropopsSenhas.enabled"
+        value: "false"
       - name: "argocd.randomLogger.enabled"
-        value: true
+        value: "false"
     repoURL: https://github.com/leonelzacheo/lab-devops-argocd.git
     targetRevision: feat/day2
   syncPolicy:

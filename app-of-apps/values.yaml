@@ -1,7 +1,7 @@
 # test
 argocd:
-  giropopsSenhas:
+  giropops-senhas:
     enabled: false
-    replicas: 5
-  randomLogger:
+    replicas: 2
+  random-logger:
     enabled: false
