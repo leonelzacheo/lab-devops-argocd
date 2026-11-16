@@ -15,7 +15,7 @@
       targetRevision: feat/day2
     syncPolicy:
       automated:
-        selfHeal: true
+        selfHeal: false
       syncOptions:
       - CreateNamespace=true 
 {{- end}}
