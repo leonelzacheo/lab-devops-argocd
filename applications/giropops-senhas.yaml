@@ -1,4 +1,5 @@
-apiVersion: argoproj.io/v1alpha1    #
+{{ if .Values.argocd.giropopsSenhas.enabled }}
+apiVersion: argoproj.io/v1alpha1    
 kind: Application
 metadata:
   name: giropops-senhas
@@ -14,7 +15,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: giropops-senhas
   syncPolicy:
-    automated: {}
+    automated: 
       selfHeal: false
     syncOptions:
     - CreateNamespace=true
+{{ end }}    

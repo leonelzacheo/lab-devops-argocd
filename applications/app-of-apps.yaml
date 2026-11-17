@@ -13,13 +13,15 @@ spec:
     helm:
       parameters:
       - name: "argocd.giropopsSenhas.enabled"
-        value: "true"
+        value: "false"
       - name: "argocd.randomLogger.enabled"
-        value: "true"
+        value: "false"
     repoURL: https://github.com/leonelzacheo/lab-devops-argocd.git
     targetRevision: feat/day2
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
+      prune: false
     syncOptions:
     - CreateNamespace=true
+    - PruneLast=true
